@@ -34,6 +34,7 @@ void UTerrainComponent::GenerateVertices() {
 			int index = GetIndexForGridCoordinates(x, y);
 			FVector2D Position = GetPositionForGridCoordinates(x, y);
 			Vertices[index] = FVector(Position.X, Position.Y, NoiseResult);
+			UV[index] = FVector2D(x, y);
 		}
 	}
 }
