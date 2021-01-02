@@ -6,7 +6,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "PerlinNoiseComponent.h"
-#include "RuntimeMeshComponent.h"
+#include "Components/RuntimeMeshComponentStatic.h"
 #include "Components/ActorComponent.h"
 #include "TerrainComponent.generated.h"
 
@@ -33,7 +33,7 @@ public:
 	float NoiseOutputScale = 2000; // Making this bigger will scale the terrain's height
 
 	UPerlinNoiseComponent* Noise;
-	URuntimeMeshComponent* RuntimeMesh;
+	URuntimeMeshComponentStatic* RuntimeMesh;
 
 	void GenerateVertices();
 	void GenerateTriangles();
