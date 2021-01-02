@@ -40,14 +40,17 @@ void UTerrainComponent::GenerateVertices() {
 }
 
 void UTerrainComponent::GenerateMesh() {
-	RuntimeMesh->CreateMeshSection(0,
+	RuntimeMesh->CreateSectionFromComponents(0, // LOD index
+		0, // Section Index
+		0, // Material slot
 		Vertices,
 		Triangles,
 		Normals,
 		UV,
 		VertexColors,
 		Tangents,
-		true, EUpdateFrequency::Infrequent);
+		ERuntimeMeshUpdateFrequency::Infrequent,
+		true); // create collision. This adds significant cost
 }
 
 void UTerrainComponent::GenerateTriangles() {
@@ -104,7 +107,7 @@ void UTerrainComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	Noise = Cast<UPerlinNoiseComponent>(GetOwner()->GetComponentByClass(UPerlinNoiseComponent::StaticClass()));
-	RuntimeMesh = Cast<URuntimeMeshComponent>(GetOwner()->GetComponentByClass(URuntimeMeshComponent::StaticClass()));
+	RuntimeMesh = Cast<URuntimeMeshComponentStatic>(GetOwner()->GetComponentByClass(URuntimeMeshComponentStatic::StaticClass()));
 	// ...
 	
 }
